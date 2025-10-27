@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcs81i05igap3"]
+
+[ext_resource type="Script" path="res://projectile.gd" id="1_0yfua"]
+[ext_resource type="Texture2D" uid="uid://tbyxv13cosr" path="res://assets/pitch.png" id="2_j18vc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o86fr"]
+size = Vector2(11, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2den"]
+size = Vector2(11, 7)
+
+[node name="projectile" type="CharacterBody2D"]
+position = Vector2(113, 132)
+script = ExtResource("1_0yfua")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14
+texture = ExtResource("2_j18vc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -4.5)
+shape = SubResource("RectangleShape2D_o86fr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.8
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -4.5)
+shape = SubResource("RectangleShape2D_c2den")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://b51uj0a5v6vt7"]
+
+[ext_resource type="Script" path="res://dog/dog.gd" id="1_7wpx1"]
+[ext_resource type="Texture2D" uid="uid://bg2wa7qrnflw5" path="res://assets/rm_characteranim.png" id="3_sqokr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ut2hf"]
+radius = 7.56637
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16fec"]
+atlas = ExtResource("3_sqokr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06hx4"]
+atlas = ExtResource("3_sqokr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr7jc"]
+atlas = ExtResource("3_sqokr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itbmj"]
+atlas = ExtResource("3_sqokr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8yih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16fec")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06hx4")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr7jc")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itbmj")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cyvyt"]
+radius = 7.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_7wpx1")
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_ut2hf")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.5
+one_shot = true
+emission_shape = 5
+emission_points = PackedVector2Array(0, -5)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
+spread = 0.0
+gravity = Vector2(0, 500)
+color = Color(1, 0.752941, 0.0313726, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y8yih")
+animation = &"down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cyvyt")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

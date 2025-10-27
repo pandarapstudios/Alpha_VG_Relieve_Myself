@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://djol1ne0x36xb"]
+
+[ext_resource type="Script" path="res://Level/cannon.gd" id="1_5dg3a"]
+[ext_resource type="Texture2D" uid="uid://b587e1gbw7ce7" path="res://assets/relievemyself10_13 (2).png" id="2_pn43r"]
+[ext_resource type="PackedScene" uid="uid://bcs81i05igap3" path="res://Level/projectile.tscn" id="3_no5bg"]
+
+[node name="main" type="Node2D"]
+
+[node name="cannon" type="Node2D" parent="."]
+script = ExtResource("1_5dg3a")
+
+[node name="cannon" type="Sprite2D" parent="cannon"]
+position = Vector2(256, 288)
+texture = ExtResource("2_pn43r")
+
+[node name="projectile2" parent="cannon/cannon" instance=ExtResource("3_no5bg")]
+position = Vector2(-256, -288)
+
+[node name="projectile3" parent="cannon/cannon" instance=ExtResource("3_no5bg")]
+position = Vector2(-256, -288)
+
+[node name="projectile" parent="cannon/cannon" instance=ExtResource("3_no5bg")]
+position = Vector2(-256, -288)
