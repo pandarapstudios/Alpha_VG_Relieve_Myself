@@ -24,5 +24,5 @@ func _physics_process(_delta):
 		# Update the last tile position
 		#last_tile_coords = current_tile_coords
 	if(counter == 120):
-		$"../../GameOver2".game_over()
+		%GameOver2.game_over()
 	 

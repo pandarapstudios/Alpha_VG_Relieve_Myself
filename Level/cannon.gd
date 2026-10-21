@@ -2,9 +2,6 @@ extends Node2D
 @onready var main = get_tree().get_root().get_node("GameLevel")
 @onready var projectile = load("res://Level/projectile.tscn")
 
-func _ready():
-	shoot()
-
 func _physics_process(delta):
 	var num = randf_range(100,300)
 	rotation_degrees += num * delta
